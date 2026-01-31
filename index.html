@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="判断サポーター">
+  <meta name="apple-mobile-web-app-title" content="判断サポ">
   <title>購入判断サポーター</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -16,14 +16,9 @@
     <h1>🛒 購入判断サポーター</h1>
 
     <div class="input-group">
-      <label>何を買おうとしていますか？
-        <input id="itemName" type="text" placeholder="例：MacBook / 服">
-      </label>
-
-      <label>値段（円）
-        <input type="text" id="price" inputmode="numeric" placeholder="例：150000">
-      </label>
-
+      <label>商品名<input id="itemName" type="text" placeholder="例：MacBook"></label>
+      <label>値段（円）<input type="text" id="price" inputmode="numeric" placeholder="例：150000"></label>
+      
       <div class="range-group">
         <label>使用頻度（月）<span class="value"><span id="frequencyValue">10</span> 回</span>
           <input type="range" id="frequency" min="0" max="30" value="10">
@@ -31,7 +26,7 @@
       </div>
 
       <div class="range-group">
-        <label>欲しさ（直感）<span class="value"><span id="desireValue">50</span></span>
+        <label>欲しさ<span class="value"><span id="desireValue">50</span></span>
           <input type="range" id="desire" min="0" max="100" value="50">
         </label>
       </div>
@@ -55,7 +50,6 @@
     </div>
 
     <button class="judge-btn" onclick="judge()">判定する</button>
-
     <div id="result" class="result" style="display:none;"></div>
 
     <hr>
@@ -66,12 +60,16 @@
   <div class="sidebar">
     <section class="sidebar-box">
       <h2>💰 お財布状況</h2>
-      <label>今月の予算
-        <input type="text" id="budgetInput" inputmode="numeric" placeholder="予算を入力" oninput="updateBudget()">
-      </label>
+      <label>今月の予算<input type="text" id="budgetInput" inputmode="numeric" placeholder="予算を入力" oninput="updateBudget()"></label>
       <select id="monthSelector" onchange="renderHistory()"></select>
+      <div class="stat-label">今月の出費</div>
       <div id="totalAmount" class="total-amount">0円</div>
       <div id="budgetMessage" class="budget-message"></div>
+      
+      <div class="saving-box">
+        <div class="stat-label">🎊 累計節約額</div>
+        <div id="totalSavings" class="saving-amount">0円</div>
+      </div>
     </section>
 
     <section class="sidebar-box data-mgmt">
