@@ -3,36 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-  <link rel="apple-touch-icon" href="icon.png">
-
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="判断サポ">
-  <title>購入判断サポーター</title>
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="icon" type="image/png" href="icon.png">
+  <title>購入判断サポーター (AI版)</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="container">
   <div class="app">
-    <h1>🛒 あなたのための購入判断サポーター</h1>
+    <h1>🛒 購入判断サポーター</h1>
+
+    <div class="app-description">
+      <div class="leaf-icon">🌿</div>
+      <p class="catchphrase">モノではなく、満足度を買おう。</p>
+      <p class="sub-text">
+        AIが1年後のあなたになりきって、<br>
+        その買い物が本当に「買い」か判定します。
+      </p>
+
+      <div class="usage-guide">
+        <div class="step"><span class="step-num">1</span><p>情報を入力</p></div>
+        <div class="arrow">→</div>
+        <div class="step"><span class="step-num">2</span><p>買うべきか判定</p></div>
+        <div class="arrow">→</div>
+        <div class="step"><span class="step-num">3</span><p>購買有無を入力し、賢く節約</p></div>
+      </div>
+    </div>
 
     <div class="input-group">
-      <label>商品名を教えてね！<input id="itemName" type="text" placeholder="例：MacBook"></label>
+      <label>商品名<input id="itemName" type="text" placeholder="例：MacBook Air"></label>
       <label>値段（円）<input type="text" id="price" inputmode="numeric" placeholder="例：150000"></label>
       
-      <div class="range-group">
-        <label>使用頻度（月）<span class="value"><span id="frequencyValue">10</span> 回</span>
-          <input type="range" id="frequency" min="0" max="30" value="10">
-        </label>
-      </div>
+    <div class="range-group">
+      <label>使用頻度（月）<span class="value"><span id="frequencyValue">10</span> 回</span>
+        <input type="range" id="frequency" min="0" max="30" value="10">
+      </label>
+    </div>
 
-      <div class="range-group">
-        <label>欲しさを数字で表してね！<span class="value"><span id="desireValue">50</span></span>
-          <input type="range" id="desire" min="0" max="100" value="50">
-        </label>
-      </div>
+    <div class="range-group">
+      <label>欲しさ<span class="value"><span id="desireValue">50</span></span>
+      <input type="range" id="desire" min="0" max="100" value="50">
+      </label>
+    </div>
 
       <label>カテゴリ
         <select id="category">
@@ -43,7 +59,7 @@
         </select>
       </label>
 
-      <label>過去の後悔はしたことある？
+      <label>過去の後悔
         <select id="regret">
           <option value="1.0">してない</option>
           <option value="0.85">少しした</option>
@@ -52,7 +68,8 @@
       </label>
     </div>
 
-    <button class="judge-btn" onclick="judge()">判定する</button>
+    <button class="judge-btn" id="judgeBtn" onclick="judgeWithAI()">🤖 相談する</button>
+    <div id="loading" style="display:none; text-align:center; margin:15px 0; color:#666;">AIがあなたの物欲を分析中...</div>
     <div id="result" class="result" style="display:none;"></div>
 
     <hr>
@@ -63,7 +80,16 @@
   <div class="sidebar">
     <section class="sidebar-box">
       <h2>💰 お財布状況</h2>
-      <label>今月の予算<input type="text" id="budgetInput" inputmode="numeric" placeholder="予算を入力" oninput="updateBudget()"></label>
+      
+      <div class="budget-display-area">
+        <div class="stat-label">今月の予算設定</div>
+        <div id="displayBudget" class="budget-value">0円</div>
+        <div class="budget-input-group">
+          <input type="text" id="budgetInput" inputmode="numeric" placeholder="金額を入力">
+          <button class="btn-update-budget" onclick="updateBudget()">登録</button>
+        </div>
+      </div>
+
       <select id="monthSelector" onchange="renderHistory()"></select>
       <div class="stat-label">今月の出費</div>
       <div id="totalAmount" class="total-amount">0円</div>
@@ -82,6 +108,9 @@
         バックアップを読み込む
         <input type="file" id="importFile" style="display: none;" onchange="importData(event)">
       </label>
+      <p style="font-size: 10px; color: #999; margin-top: 10px; text-align: center;">
+        ※アイコン削除で履歴も消えるため保存を推奨
+      </p>
     </section>
   </div>
 </div>
