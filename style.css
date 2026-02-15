@@ -1,32 +1,38 @@
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-body { font-family: sans-serif; background: #f0f2f5; margin: 0; padding: 20px; display: flex; justify-content: center; }
+body { font-family: "Helvetica Neue", Arial, sans-serif; background: #f4f7f6; margin: 0; padding: 20px; color: #333; display: flex; justify-content: center; }
 .container { display: flex; gap: 20px; max-width: 1000px; width: 100%; }
-.app, .sidebar-box { background: white; border-radius: 18px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+.app, .sidebar-box { background: white; border-radius: 24px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
 .app { flex: 2; width: 100%; }
 .sidebar { flex: 1; display: flex; flex-direction: column; gap: 15px; }
-input[type="text"], select { width: 100%; padding: 14px; margin-top: 8px; border-radius: 10px; border: 1px solid #ddd; font-size: 16px; }
-input[type="range"] { width: 100%; height: 40px; }
-h1 { font-size: 1.4rem; text-align: center; }
-label { display: block; margin-top: 15px; font-weight: bold; font-size: 0.85rem; }
+
+/* 🌿 説明エリア */
+.app-description { text-align: center; padding: 20px 10px 25px; border-bottom: 1px inset #eee; margin-bottom: 25px; }
+.leaf-icon { font-size: 1.5rem; margin-bottom: 10px; opacity: 0.8; }
+.catchphrase { font-size: 1.1rem; font-weight: 600; margin: 0; color: #2c3e50; letter-spacing: 0.05em; }
+.sub-text { font-size: 0.85rem; color: #7f8c8d; line-height: 1.6; margin-top: 8px; }
+
+.usage-guide { display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 25px; padding-top: 20px; border-top: 1px dashed #eee; }
+.step-num { display: inline-block; width: 22px; height: 22px; background: #f0f0f0; color: #999; border-radius: 50%; font-size: 0.7rem; line-height: 22px; font-weight: bold; margin-bottom: 5px; }
+.step p { margin: 0; font-size: 0.7rem; color: #888; }
+.arrow { color: #ddd; font-size: 0.8rem; margin-top: -15px; }
+
+/* 💰 予算表示エリア */
+.budget-display-area { background: #fdfdfd; border: 1px solid #f0f0f0; border-radius: 16px; padding: 15px; margin-bottom: 20px; text-align: center; }
+.budget-value { font-size: 1.5rem; font-weight: bold; color: #2c3e50; margin: 5px 0 15px 0; }
+.budget-input-group { display: flex; gap: 5px; }
+.budget-input-group input { margin-top: 0; padding: 8px; font-size: 14px; flex: 2; border-radius: 8px; border: 1px solid #eee; }
+.btn-update-budget { flex: 1; background: #95a5a6; color: white; border: none; border-radius: 8px; font-size: 0.75rem; cursor: pointer; }
+
+/* 共通パーツ */
+h1 { font-size: 0.9rem; text-align: center; color: #bdc3c7; letter-spacing: 0.2em; margin-bottom: 10px; }
+h2 { font-size: 0.9rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 8px; }
+input[type="text"], select { width: 100%; padding: 14px; margin-top: 8px; border-radius: 12px; border: 1px solid #e0e0e0; background: #fafafa; font-size: 16px; }
+label { display: block; margin-top: 18px; font-weight: 600; font-size: 0.8rem; color: #666; }
 .value { float: right; color: #ff4d6d; }
-
-.judge-btn { width: 100%; padding: 18px; margin-top: 25px; background: linear-gradient(135deg, #ff7a7a, #ff4d6d); color: white; border: none; border-radius: 14px; font-size: 1.1rem; font-weight: bold; cursor: pointer; }
-
-.result { margin-top: 20px; padding: 15px; background: #fff9db; border-radius: 12px; border: 1px solid #ffe066; text-align: center; font-weight: bold; }
-
-.stat-label { font-size: 0.8rem; color: #666; margin-top: 15px; text-align: center; }
-.total-amount { font-size: 1.8rem; font-weight: bold; text-align: center; margin-bottom: 5px; }
-.over-budget { color: #e63946; }
-
-/* 🌟 節約額用のデザイン */
-.saving-box { margin-top: 20px; padding: 15px; background: #e7f5ff; border-radius: 12px; border: 2px dashed #4a90e2; }
-.saving-amount { font-size: 1.8rem; font-weight: bold; text-align: center; color: #4a90e2; text-shadow: 1px 1px 0 #fff; }
-
-.history-item { background: #f9f9f9; border-radius: 12px; padding: 15px; margin-top: 12px; border: 1px solid #eee; font-size: 14px; }
-.history-item button { padding: 10px; margin-top: 10px; border-radius: 8px; border: none; color: white; font-weight: bold; width: 48%; cursor: pointer; }
-
-.btn-export, .btn-import { display: block; width: 100%; padding: 12px; border-radius: 10px; margin-top: 10px; border: none; font-weight: bold; cursor: pointer; text-align: center; font-size: 0.8rem;}
-.btn-export { background: #6c757d; color: white; }
-.btn-import { background: #adb5bd; color: white; }
+.judge-btn { width: 100%; padding: 20px; margin-top: 30px; background: #333; color: white; border: none; border-radius: 16px; font-size: 1.1rem; font-weight: bold; cursor: pointer; }
+.result { margin-top: 25px; padding: 20px; background: #fff9db; border-radius: 16px; text-align: center; border: 1px solid #ffe066; }
+.total-amount { font-size: 2.2rem; font-weight: 300; text-align: center; }
+.saving-box { margin-top: 20px; padding: 20px; background: #f0f9ff; border-radius: 18px; border: 1px solid #e1f0fa; }
+.saving-amount { font-size: 2.2rem; font-weight: 300; text-align: center; color: #3498db; }
 
 @media (max-width: 800px) { .container { flex-direction: column; } .sidebar { order: -1; } }
