@@ -3,7 +3,7 @@ let history = JSON.parse(localStorage.getItem('shopping_history')) || [];
 let budgets = JSON.parse(localStorage.getItem('shopping_budgets')) || {};
 
 // API設定 (Google AI Studioで取得したキーを入れてください)
-const GEMINI_API_KEY = 'AIzaSyCojvhNkbSbNq9-RgJXK7GVyB0djcJpB_g'; 
+const GEMINI_API_KEY = 'AIzaSyCd32MEKZMJaih_9F6T4Iz5X1g8sDaGI8I'; 
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
 
 // スライダーの数値表示
